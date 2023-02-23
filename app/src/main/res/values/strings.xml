@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Kotify</string>
+
+    <string name="menu_addPlaylist">Add</string>
+    <string name="menu_cancelPlaylist">Cancel</string>
+
+
+
+    <string name="button_addPlaylist">Add Playlist</string>
+    <string name="hint_playlistTitle">Playlist Title</string>
+    <string name="hint_playlistSong">Song Name</string>
+
+</resources>

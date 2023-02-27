@@ -10,11 +10,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.setu.kotifyapp.R
 import ie.setu.kotifyapp.adapters.PlaylistAdapter
+import ie.setu.kotifyapp.adapters.PlaylistListener
 import ie.setu.kotifyapp.databinding.ActivityPlaylistListBinding
 import ie.setu.kotifyapp.main.MainApp
+import ie.setu.kotifyapp.models.PlaylistModel
 
 
-class PlaylistListActivity : AppCompatActivity() {
+class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPlaylistListBinding
@@ -28,7 +30,9 @@ class PlaylistListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PlaylistAdapter(app.playlists)
+        binding.recyclerView.adapter = PlaylistAdapter(app.playlists.findAll(),this)
+
+
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
     }
@@ -48,14 +52,31 @@ class PlaylistListActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPlaylistClick(playlist: PlaylistModel) {
+        val launcherIntent = Intent(this, PlaylistActivity::class.java)
+        launcherIntent.putExtra("playlist_edit", playlist)
+        getClickResult.launch(launcherIntent)
+    }
+
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.playlists.findAll().size)
+            }
+        }
+
     private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.playlists.size)
+                notifyItemRangeChanged(0,app.playlists.findAll().size)
             }
         }
+
 
 }

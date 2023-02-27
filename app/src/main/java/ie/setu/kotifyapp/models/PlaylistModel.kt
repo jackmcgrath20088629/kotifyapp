@@ -1,3 +1,8 @@
 package ie.setu.kotifyapp.models
 
-data class PlaylistModel(var title: String = "", var song: String = "")
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class PlaylistModel(var id: Long = 0, var title: String = "", var song: String = "") : Parcelable
+

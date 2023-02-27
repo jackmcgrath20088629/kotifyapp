@@ -27,14 +27,22 @@ class PlaylistActivity : AppCompatActivity() {
         setSupportActionBar(binding.addToolbar)
         app = application as MainApp
 
+        if (intent.hasExtra("playlist_edit")) {
+            playlist = intent.extras?.getParcelable("playlist_edit")!!
+            binding.playlistTitle.setText(playlist.title)
+            binding.song.setText(playlist.song)
+        }
+
         binding.btnAdd.setOnClickListener() {
             playlist.title = binding.playlistTitle.text.toString()
             playlist.song = binding.song.text.toString()
             if (playlist.title.isNotEmpty()) {
-                app.playlists.add(playlist.copy())
+                app.playlists.create(playlist.copy())
                 setResult(RESULT_OK)
                 finish()
             }
+
+
             else {
                 Snackbar
                     .make(it, "A playlist title must be entered", Snackbar.LENGTH_LONG)

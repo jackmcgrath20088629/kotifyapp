@@ -1,12 +1,9 @@
 package ie.setu.kotifyapp.adapters
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.setu.kotifyapp.databinding.CardPlaylistBinding
 import ie.setu.kotifyapp.models.PlaylistModel
-
-
 interface PlaylistListener {
     fun onPlaylistClick(playlist: PlaylistModel)
 }

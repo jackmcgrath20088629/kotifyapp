@@ -7,7 +7,7 @@ import timber.log.Timber
 import timber.log.Timber.i
 
 class MainApp : Application() {
-
+    //val playlists = ArrayList<PlaylistModel>()
     val playlists = PlaylistMemStore()
 
     override fun onCreate() {

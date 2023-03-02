@@ -16,6 +16,7 @@ import ie.setu.kotifyapp.main.MainApp
 import ie.setu.kotifyapp.models.PlaylistModel
 
 
+
 class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
 
     lateinit var app: MainApp
@@ -25,16 +26,14 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
         super.onCreate(savedInstanceState)
         binding = ActivityPlaylistListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = title
+        setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = PlaylistAdapter(app.playlists.findAll(),this)
-
-
-        binding.toolbar.title = title
-        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,14 +50,7 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onPlaylistClick(playlist: PlaylistModel) {
-        val launcherIntent = Intent(this, PlaylistActivity::class.java)
-        launcherIntent.putExtra("playlist_edit", playlist)
-        getClickResult.launch(launcherIntent)
-    }
-
-    private val getClickResult =
+    private val getResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -67,8 +59,13 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
                 notifyItemRangeChanged(0,app.playlists.findAll().size)
             }
         }
+    override fun onPlaylistClick(playlist: PlaylistModel) {
+        val launcherIntent = Intent(this, PlaylistActivity::class.java)
+        launcherIntent.putExtra("playlist_edit", playlist)
+        getClickResult.launch(launcherIntent)
+    }
 
-    private val getResult =
+    private val getClickResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {

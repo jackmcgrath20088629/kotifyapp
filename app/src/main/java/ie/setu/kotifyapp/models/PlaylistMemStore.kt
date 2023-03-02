@@ -2,7 +2,6 @@ package ie.setu.kotifyapp.models
 
 import timber.log.Timber.i
 
-
 var lastId = 0L
 
 internal fun getId(): Long {
@@ -19,7 +18,6 @@ class PlaylistMemStore : PlaylistStore {
     override fun create(playlist: PlaylistModel) {
         playlists.add(playlist)
         playlist.id = getId()
-        playlists.add(playlist)
         logAll()
     }
 

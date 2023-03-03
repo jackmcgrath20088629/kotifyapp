@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.NumberPicker
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -16,11 +20,6 @@ import timber.log.Timber
 import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.helpers.showImagePicker
-
-
-
-
-
 
 
 class PlaylistActivity : AppCompatActivity() {
@@ -75,6 +74,9 @@ class PlaylistActivity : AppCompatActivity() {
         }
 
         registerImagePickerCallback()
+        numberPicker()
+        playlistGenrePicker()
+
     }
 
 
@@ -107,4 +109,34 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
+    private fun numberPicker() {
+        val numberPicker = binding.songnumberPicker
+        numberPicker.minValue = 0
+        numberPicker.maxValue = 100
+        numberPicker.wrapSelectorWheel = true
+    }
+
+    // Reference: https://tutorialwing.com/android-spinner-using-kotlin-with-example/
+    private fun playlistGenrePicker() {
+        val genreNames = arrayOf("Rock", "Rap", "Jazz", "EDM", "Pop", "Country", "Other")
+        val spinner = binding.genrePicker
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
+        spinner.adapter = arrayAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+    }
+
+
 }

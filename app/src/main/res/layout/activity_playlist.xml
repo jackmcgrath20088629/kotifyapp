@@ -39,7 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:titleTextColor="@color/white">
 
                 <EditText
                     android:id="@+id/playlistTitle"
@@ -68,17 +69,49 @@
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:text="Song count:"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <NumberPicker
+                    android:id="@+id/songnumberPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_margin="20dp"
+                    android:background="@color/green"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp" />
+
+
+
+                <Spinner
+                    android:id="@+id/genrePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:background="@color/green"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"/>
+
+
+
                 <Button
                     android:id="@+id/chooseImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:background="@color/green"
-                    android:paddingBottom="8dp"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="@string/button_addImage"
                     android:textColor="@color/white"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/playlistImage"

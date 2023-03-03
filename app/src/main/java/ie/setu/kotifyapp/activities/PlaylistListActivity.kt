@@ -2,11 +2,11 @@ package ie.setu.kotifyapp.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ie.setu.kotifyapp.R
 import ie.setu.kotifyapp.adapters.PlaylistAdapter
@@ -14,7 +14,6 @@ import ie.setu.kotifyapp.adapters.PlaylistListener
 import ie.setu.kotifyapp.databinding.ActivityPlaylistListBinding
 import ie.setu.kotifyapp.main.MainApp
 import ie.setu.kotifyapp.models.PlaylistModel
-
 
 
 class PlaylistListActivity : AppCompatActivity(), PlaylistListener {

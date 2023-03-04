@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -75,6 +78,10 @@ class PlaylistActivity : AppCompatActivity() {
         }
 
         registerImagePickerCallback()
+        genrePicker()
+        songNumberPicker()
+
+
     }
 
 
@@ -107,4 +114,37 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
+
+
+    // spinner code reference:https://tutorialwing.com/android-spinner-using-kotlin-with-example/
+    private fun genrePicker() {
+        val genreNames = arrayOf("Rock", "Jazz", "Other", "Pop", "Rap", "R&B", "Country")
+        val spinner = binding.genre
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
+        spinner.adapter = arrayAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+    }
+
+    private fun songNumberPicker() {
+        val numberPicker = binding.numbPick
+        numberPicker.minValue = 0
+        numberPicker.maxValue = 10
+        numberPicker.wrapSelectorWheel = true
+    }
+
+
+
 }

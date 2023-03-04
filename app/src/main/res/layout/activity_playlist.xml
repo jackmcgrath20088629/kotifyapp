@@ -67,6 +67,19 @@
                     android:padding="8dp"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/favArtist"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_favArtist"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/chooseImage"
@@ -79,6 +92,24 @@
                     android:text="@string/button_addImage"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
+
+                <NumberPicker
+                    android:id="@+id/numbPick"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/green"
+                    android:layout_margin="16dp"/>
+
+                <Spinner
+                    android:id="@+id/genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@color/green"/>
+
 
                 <ImageView
                     android:id="@+id/playlistImage"
@@ -103,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@color/darker_green"
+                    android:background="@color/red"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:stateListAnimator="@null"

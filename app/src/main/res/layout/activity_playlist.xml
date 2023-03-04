@@ -98,6 +98,20 @@
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
+                <Button
+                    android:id="@+id/btnDel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/darker_green"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/button_delPlaylist"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+
             </LinearLayout>
         </ScrollView>
 

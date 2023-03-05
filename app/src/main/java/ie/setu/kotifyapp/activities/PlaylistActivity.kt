@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-
+import android.widget.NumberPicker
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -26,7 +26,7 @@ class PlaylistActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlaylistBinding
     var playlist = PlaylistModel()
-   lateinit var app : MainApp
+    lateinit var app : MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     val IMAGE_REQUEST = 1
 
@@ -46,6 +46,7 @@ class PlaylistActivity : AppCompatActivity() {
             playlist = intent.extras?.getParcelable("playlist_edit")!!
             binding.playlistTitle.setText(playlist.title)
             binding.song.setText(playlist.song)
+            playlist.favArtist = binding.favArtist.text.toString()
             binding.btnAdd.setText(R.string.save_playlist)
             Picasso.get()
                 .load(playlist.image)
@@ -55,6 +56,7 @@ class PlaylistActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             playlist.title = binding.playlistTitle.text.toString()
             playlist.song = binding.song.text.toString()
+            playlist.favArtist = binding.favArtist.text.toString()
             if (playlist.title.isEmpty()) {
                 Snackbar.make(it,R.string.enter_playlist_title, Snackbar.LENGTH_LONG)
                     .show()
@@ -74,11 +76,8 @@ class PlaylistActivity : AppCompatActivity() {
         }
 
         registerImagePickerCallback()
-
-
         numberPicker()
         playlistGenrePicker()
-
 
     }
 
@@ -112,12 +111,8 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
-
-
-
-
     private fun numberPicker() {
-        val numberPicker = binding.songnumberPicker
+        val numberPicker = binding.numbPick
         numberPicker.minValue = 0
         numberPicker.maxValue = 100
         numberPicker.wrapSelectorWheel = true
@@ -126,8 +121,7 @@ class PlaylistActivity : AppCompatActivity() {
     // Reference: https://tutorialwing.com/android-spinner-using-kotlin-with-example/
     private fun playlistGenrePicker() {
         val genreNames = arrayOf("Rock", "Rap", "Jazz", "EDM", "Pop", "Country", "Other")
-        val spinner = binding.genrePicker
-
+        val spinner = binding.genre
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
         spinner.adapter = arrayAdapter
 
@@ -145,7 +139,6 @@ class PlaylistActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
 }

@@ -30,7 +30,10 @@ class PlaylistAdapter constructor(private var playlists: List<PlaylistModel>,
         fun bind(playlist: PlaylistModel, listener: PlaylistListener) {
             binding.playlistTitle.text = playlist.title
             binding.song.text = playlist.song
+            binding.favArtist.text = playlist.favArtist
 
+            binding.genreNames.text = playlist.genre
+            //binding.numbPick.int = playlist.numbPick.toString()
             binding.root.setOnClickListener { listener.onPlaylistClick(playlist) }
         }
     }

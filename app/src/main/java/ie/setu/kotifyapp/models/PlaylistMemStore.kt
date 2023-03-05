@@ -26,7 +26,9 @@ class PlaylistMemStore : PlaylistStore {
         if (foundPlaylist != null) {
             foundPlaylist.title = playlist.title
             foundPlaylist.song = playlist.song
-
+            foundPlaylist.favArtist = playlist.favArtist
+            foundPlaylist.image = playlist.image
+            foundPlaylist.genre = playlist.genre
             logAll()
         }
     }

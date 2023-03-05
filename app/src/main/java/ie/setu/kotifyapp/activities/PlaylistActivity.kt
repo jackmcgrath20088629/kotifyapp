@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.NumberPicker
+
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -74,8 +74,11 @@ class PlaylistActivity : AppCompatActivity() {
         }
 
         registerImagePickerCallback()
+
+
         numberPicker()
         playlistGenrePicker()
+
 
     }
 
@@ -109,6 +112,10 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
+
+
+
+
     private fun numberPicker() {
         val numberPicker = binding.songnumberPicker
         numberPicker.minValue = 0
@@ -120,6 +127,7 @@ class PlaylistActivity : AppCompatActivity() {
     private fun playlistGenrePicker() {
         val genreNames = arrayOf("Rock", "Rap", "Jazz", "EDM", "Pop", "Country", "Other")
         val spinner = binding.genrePicker
+
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
         spinner.adapter = arrayAdapter
 
@@ -137,6 +145,7 @@ class PlaylistActivity : AppCompatActivity() {
             }
         }
     }
+
 
 
 }

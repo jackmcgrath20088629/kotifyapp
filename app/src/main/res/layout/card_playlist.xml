@@ -28,11 +28,15 @@
             tools:text="Favourite" />
 
         <TextView
-            android:id="@+id/genre"
+
+            android:id="@+id/favArtist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/playlistTitle"
+            android:layout_below="@id/song"
             tools:text="Favourite" />
+
+
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -26,6 +26,7 @@ class PlaylistMemStore : PlaylistStore {
         if (foundPlaylist != null) {
             foundPlaylist.title = playlist.title
             foundPlaylist.song = playlist.song
+
             logAll()
         }
     }

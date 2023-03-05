@@ -10,6 +10,8 @@
     <string name="hint_favArtist">Please tell us your favourite artist</string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_playlist_image">Select playlist image</string>
+
     <string name="button_delPlaylist">Delete Playlist</string>
+
 </resources>
 

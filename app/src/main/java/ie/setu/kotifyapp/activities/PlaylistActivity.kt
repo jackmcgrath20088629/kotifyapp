@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -19,11 +20,6 @@ import timber.log.Timber
 import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.helpers.showImagePicker
-
-
-
-
-
 
 
 class PlaylistActivity : AppCompatActivity() {
@@ -78,8 +74,10 @@ class PlaylistActivity : AppCompatActivity() {
         }
 
         registerImagePickerCallback()
-        genrePicker()
-        songNumberPicker()
+
+
+        numberPicker()
+        playlistGenrePicker()
 
 
     }
@@ -116,10 +114,20 @@ class PlaylistActivity : AppCompatActivity() {
     }
 
 
-    // spinner code reference:https://tutorialwing.com/android-spinner-using-kotlin-with-example/
-    private fun genrePicker() {
-        val genreNames = arrayOf("Rock", "Jazz", "Other", "Pop", "Rap", "R&B", "Country")
-        val spinner = binding.genre
+
+
+    private fun numberPicker() {
+        val numberPicker = binding.songnumberPicker
+        numberPicker.minValue = 0
+        numberPicker.maxValue = 100
+        numberPicker.wrapSelectorWheel = true
+    }
+
+    // Reference: https://tutorialwing.com/android-spinner-using-kotlin-with-example/
+    private fun playlistGenrePicker() {
+        val genreNames = arrayOf("Rock", "Rap", "Jazz", "EDM", "Pop", "Country", "Other")
+        val spinner = binding.genrePicker
+
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
         spinner.adapter = arrayAdapter
 
@@ -136,13 +144,6 @@ class PlaylistActivity : AppCompatActivity() {
                 // Code to perform some action when nothing is selected
             }
         }
-    }
-
-    private fun songNumberPicker() {
-        val numberPicker = binding.numbPick
-        numberPicker.minValue = 0
-        numberPicker.maxValue = 10
-        numberPicker.wrapSelectorWheel = true
     }
 
 

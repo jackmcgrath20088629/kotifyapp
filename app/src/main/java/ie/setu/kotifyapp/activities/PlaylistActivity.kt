@@ -1,6 +1,7 @@
 package ie.setu.kotifyapp.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -46,11 +47,14 @@ class PlaylistActivity : AppCompatActivity() {
             playlist = intent.extras?.getParcelable("playlist_edit")!!
             binding.playlistTitle.setText(playlist.title)
             binding.song.setText(playlist.song)
-            playlist.favArtist = binding.favArtist.text.toString()
+            binding.favArtist.setText(playlist.favArtist)
             binding.btnAdd.setText(R.string.save_playlist)
             Picasso.get()
                 .load(playlist.image)
                 .into(binding.playlistImage)
+            if (playlist.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_playlist_image)
+            }
         }
 
         binding.btnAdd.setOnClickListener() {

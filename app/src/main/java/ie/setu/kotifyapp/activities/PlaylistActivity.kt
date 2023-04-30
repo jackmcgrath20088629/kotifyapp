@@ -31,7 +31,7 @@ class PlaylistActivity : AppCompatActivity() {
     lateinit var app : MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    var location = Location(52.245696, -7.139102, 15f)
+    //var location = Location(52.245696, -7.139102, 15f)
     val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +83,11 @@ class PlaylistActivity : AppCompatActivity() {
         }
         binding.playlistLocation.setOnClickListener {
             val location = Location(52.245696, -7.139102, 15f)
+            if (playlist.zoom != 0f) {
+                location.lat =  playlist.lat
+                location.lng = playlist.lng
+                location.zoom = playlist.zoom
+            }
             val launcherIntent = Intent(this, MapActivity::class.java)
                 .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)

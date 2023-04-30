@@ -29,6 +29,9 @@ class PlaylistMemStore : PlaylistStore {
             foundPlaylist.favArtist = playlist.favArtist
             foundPlaylist.image = playlist.image
             foundPlaylist.genre = playlist.genre
+            foundPlaylist.lat = playlist.lat
+            foundPlaylist.lng = playlist.lng
+            foundPlaylist.zoom = playlist.zoom
             logAll()
         }
     }

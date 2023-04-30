@@ -21,6 +21,7 @@ import timber.log.Timber
 import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.helpers.showImagePicker
+import ie.setu.kotifyapp.models.Location
 
 
 class PlaylistActivity : AppCompatActivity() {
@@ -29,6 +30,8 @@ class PlaylistActivity : AppCompatActivity() {
     var playlist = PlaylistModel()
     lateinit var app : MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    var location = Location(52.245696, -7.139102, 15f)
     val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,10 +81,20 @@ class PlaylistActivity : AppCompatActivity() {
         binding.chooseImage.setOnClickListener {
             showImagePicker(imageIntentLauncher)
         }
+        binding.playlistLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
+
 
         registerImagePickerCallback()
+        registerMapCallback()
         numberPicker()
         playlistGenrePicker()
+
 
     }
 
@@ -91,6 +104,8 @@ class PlaylistActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_playlist, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_cancel -> { finish() }
@@ -110,6 +125,26 @@ class PlaylistActivity : AppCompatActivity() {
                                 .load(playlist.image)
                                 .into(binding.playlistImage)
                         }
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
+                            i("Location == $location")
+                            playlist.lat = location.lat
+                            playlist.lng = location.lng
+                            playlist.zoom = location.zoom
+                        } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }

@@ -12,7 +12,8 @@
     <string name="change_playlist_image">Change playlist image</string>
     <string name="save_playlist">Save Playlist</string>
     <string name="button_delPlaylist">Delete Playlist</string>
-
+    <string name="button_location">Set Location</string>
+    <string name="title_activity_map">MapActivity</string>
 
 
 </resources>

@@ -14,12 +14,15 @@ import ie.setu.kotifyapp.adapters.PlaylistListener
 import ie.setu.kotifyapp.databinding.ActivityPlaylistListBinding
 import ie.setu.kotifyapp.main.MainApp
 import ie.setu.kotifyapp.models.PlaylistModel
+import ie.setu.kotifyapp.models.PlaylistStore
 
 
 class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPlaylistListBinding
+    private var position: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +61,12 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
                 notifyItemRangeChanged(0,app.playlists.findAll().size)
             }
         }
-    override fun onPlaylistClick(playlist: PlaylistModel) {
+    override fun onPlaylistClick(playlist: PlaylistModel, pos : Int) {
         val launcherIntent = Intent(this, PlaylistActivity::class.java)
         launcherIntent.putExtra("playlist_edit", playlist)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
-
     private val getClickResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -72,6 +75,8 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.playlists.findAll().size)
             }
+            else // Deleting
+                if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 
 

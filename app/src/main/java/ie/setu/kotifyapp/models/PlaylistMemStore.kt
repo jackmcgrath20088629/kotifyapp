@@ -36,6 +36,11 @@ class PlaylistMemStore : PlaylistStore {
         }
     }
 
+    override fun delete(placemark: PlaylistModel) {
+        playlists.remove(placemark)
+    }
+
+
     private fun logAll() {
         playlists.forEach{ i("${it}") }
     }

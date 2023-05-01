@@ -22,8 +22,6 @@ import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.helpers.showImagePicker
 import ie.setu.kotifyapp.models.Location
-
-
 class PlaylistActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlaylistBinding
@@ -33,10 +31,11 @@ class PlaylistActivity : AppCompatActivity() {
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     //var location = Location(52.245696, -7.139102, 15f)
     val IMAGE_REQUEST = 1
+    var edit = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var edit = false
+        edit = false
         binding = ActivityPlaylistBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.addToolbar.title = title
@@ -79,7 +78,7 @@ class PlaylistActivity : AppCompatActivity() {
             finish()
         }
         binding.chooseImage.setOnClickListener {
-            showImagePicker(imageIntentLauncher)
+            showImagePicker(imageIntentLauncher,this)
         }
         binding.playlistLocation.setOnClickListener {
             val location = Location(52.245696, -7.139102, 15f)
@@ -107,16 +106,22 @@ class PlaylistActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_playlist, menu)
+        if (edit) menu.getItem(0).isVisible = true
         return super.onCreateOptionsMenu(menu)
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_cancel -> { finish() }
+            R.id.item_delete -> {
+                setResult(99)
+                app.playlists.delete(playlist)
+                finish()
+            }        R.id.item_cancel -> { finish() }
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun registerImagePickerCallback() {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
@@ -125,16 +130,23 @@ class PlaylistActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            playlist.image = result.data!!.data!!
+
+                            val image = result.data!!.data!!
+                            contentResolver.takePersistableUriPermission(image,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            playlist.image = image
+
                             Picasso.get()
                                 .load(playlist.image)
                                 .into(binding.playlistImage)
-                        }
+                            binding.chooseImage.setText(R.string.change_playlist_image)
+                        } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
     }
+
 
     private fun registerMapCallback() {
         mapIntentLauncher =

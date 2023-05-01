@@ -29,9 +29,17 @@ class PlaylistMemStore : PlaylistStore {
             foundPlaylist.favArtist = playlist.favArtist
             foundPlaylist.image = playlist.image
             foundPlaylist.genre = playlist.genre
+            foundPlaylist.lat = playlist.lat
+            foundPlaylist.lng = playlist.lng
+            foundPlaylist.zoom = playlist.zoom
             logAll()
         }
     }
+
+    override fun delete(placemark: PlaylistModel) {
+        playlists.remove(placemark)
+    }
+
 
     private fun logAll() {
         playlists.forEach{ i("${it}") }

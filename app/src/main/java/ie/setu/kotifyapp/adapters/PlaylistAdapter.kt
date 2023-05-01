@@ -8,8 +8,10 @@ import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.databinding.CardPlaylistBinding
 import ie.setu.kotifyapp.models.PlaylistModel
 interface PlaylistListener {
-    fun onPlaylistClick(playlist: PlaylistModel)
+
+    fun onPlaylistClick(playlist: PlaylistModel, position : Int)
 }
+
 class PlaylistAdapter constructor(private var playlists: List<PlaylistModel>,
                                   private val listener: PlaylistListener) :
     RecyclerView.Adapter<PlaylistAdapter.MainHolder>() {
@@ -40,7 +42,7 @@ class PlaylistAdapter constructor(private var playlists: List<PlaylistModel>,
             binding.favArtist.text = playlist.favArtist
             Picasso.get().load(playlist.image).resize(200,200).into(binding.playlistImage)
             //binding.numbPick.int = playlist.numbPick.toString()
-            binding.root.setOnClickListener { listener.onPlaylistClick(playlist) }
+            binding.root.setOnClickListener { listener.onPlaylistClick(playlist,adapterPosition) }
         }
     }
 }

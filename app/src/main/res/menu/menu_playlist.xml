@@ -6,4 +6,9 @@
         android:id="@+id/item_cancel"
         android:title="@string/menu_cancelPlaylist"
         app:showAsAction="always"/>
+    <item
+        android:visible="false"
+        android:id="@+id/item_delete"
+        android:title="@string/menu_deletePlaylist"
+        app:showAsAction="always"/>
 </menu>

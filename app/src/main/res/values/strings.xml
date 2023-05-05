@@ -11,9 +11,27 @@
     <string name="select_playlist_image">Select playlist image</string>
     <string name="change_playlist_image">Change playlist image</string>
     <string name="save_playlist">Save Playlist</string>
+    <string name="button_delPlaylist">Delete button</string>
     <string name="menu_deletePlaylist">Delete</string>
     <string name="button_location">Set Location</string>
-    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_map">Map Activity</string>
+    <string name="title_activity_playlist_maps">Map of Playlists</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="genres">
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Rap</item>
+        <item>Country</item>
+        <item>Jazz</item>
+    </string-array>
 
 
 </resources>

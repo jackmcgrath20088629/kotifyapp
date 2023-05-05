@@ -49,6 +49,10 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
                 val launcherIntent = Intent(this, PlaylistActivity::class.java)
                 getResult.launch(launcherIntent)
             }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, PlaylistMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -78,6 +82,11 @@ class PlaylistListActivity : AppCompatActivity(), PlaylistListener {
             else // Deleting
                 if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
 
 
 }

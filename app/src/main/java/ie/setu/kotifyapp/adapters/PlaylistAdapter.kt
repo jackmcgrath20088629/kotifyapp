@@ -32,14 +32,12 @@ class PlaylistAdapter constructor(private var playlists: List<PlaylistModel>,
     class MainHolder(private val binding : CardPlaylistBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
-
-
-
         fun bind(playlist: PlaylistModel, listener: PlaylistListener) {
             binding.playlistTitle.text = playlist.title
             binding.song.text = playlist.song
             binding.favArtist.text = playlist.favArtist
+            binding.genres.text = playlist.genres
+
             Picasso.get().load(playlist.image).resize(200,200).into(binding.playlistImage)
             //binding.numbPick.int = playlist.numbPick.toString()
             binding.root.setOnClickListener { listener.onPlaylistClick(playlist,adapterPosition) }

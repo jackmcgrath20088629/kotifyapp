@@ -11,12 +11,12 @@ data class PlaylistModel(var id: Long = 0,
                          var song: String = "",
                          var favArtist: String = "",
                          var image: Uri = Uri.EMPTY,
-                         var genre: String = "",
+                         var genres: String = "",
                          var lat: Double = 0.0,
                          var lng: Double = 0.0,
-                         var zoom: Float = 0f
+                         var zoom: Float = 0f,
 
-                        // var numbPick: Int
+                         var numbPick: Int = 0
                                             ) : Parcelable
 @Parcelize
 data class Location(var lat: Double = 0.0,

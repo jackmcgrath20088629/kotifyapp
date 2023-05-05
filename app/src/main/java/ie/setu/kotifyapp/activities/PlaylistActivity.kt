@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.NumberPicker
+import android.widget.Spinner
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -96,7 +97,7 @@ class PlaylistActivity : AppCompatActivity() {
 
         registerImagePickerCallback()
         registerMapCallback()
-        numberPicker()
+        //numberPicker()
         playlistGenrePicker()
 
 
@@ -167,32 +168,26 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
-    private fun numberPicker() {
-        val numberPicker = binding.numbPick
-        numberPicker.minValue = 0
-        numberPicker.maxValue = 100
-        numberPicker.wrapSelectorWheel = true
-    }
+   // private fun numberPicker() {
+   //     val numberPicker = binding.numbPick
+   //     numberPicker.minValue = 0
+   //     numberPicker.maxValue = 100
+   //     numberPicker.wrapSelectorWheel = true
+  //  }
 
-    // Reference: https://tutorialwing.com/android-spinner-using-kotlin-with-example/
+    // Reference: https://developer.android.com/develop/ui/views/components/spinner
     private fun playlistGenrePicker() {
-        val genreNames = arrayOf("Rock", "Rap", "Jazz", "EDM", "Pop", "Country", "Other")
-        val spinner = binding.genre
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
-        spinner.adapter = arrayAdapter
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Code to perform some action when nothing is selected
-            }
+        val spinner: Spinner = findViewById(R.id.genre)
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.genres,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
         }
     }
 

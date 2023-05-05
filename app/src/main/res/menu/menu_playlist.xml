@@ -7,8 +7,9 @@
         android:title="@string/menu_cancelPlaylist"
         app:showAsAction="always"/>
     <item
-        android:visible="false"
+        android:visible="true"
         android:id="@+id/item_delete"
+        android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/menu_deletePlaylist"
         app:showAsAction="always"/>
 </menu>

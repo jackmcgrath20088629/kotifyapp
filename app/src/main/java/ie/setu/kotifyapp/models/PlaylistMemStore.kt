@@ -11,6 +11,7 @@ class PlaylistMemStore : PlaylistStore {
 
     val playlists = ArrayList<PlaylistModel>()
 
+
     override fun findAll(): List<PlaylistModel> {
         return playlists
     }
@@ -36,12 +37,18 @@ class PlaylistMemStore : PlaylistStore {
         }
     }
 
-    override fun delete(placemark: PlaylistModel) {
-        playlists.remove(placemark)
+    override fun delete(playlist: PlaylistModel) {
+        playlists.remove(playlist)
     }
 
 
     private fun logAll() {
         playlists.forEach{ i("${it}") }
+    }
+
+
+    override fun findById(id:Long) : PlaylistModel? {
+        val foundPlaylist: PlaylistModel? = playlists.find { it.id == id }
+        return foundPlaylist
     }
 }

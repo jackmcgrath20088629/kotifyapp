@@ -76,6 +76,11 @@ class PlaylistJSONStore(private val context: Context) : PlaylistStore {
     private fun logAll() {
         playlists.forEach { Timber.i("$it") }
     }
+
+    override fun findById(id:Long) : PlaylistModel? {
+        val foundPlaylist: PlaylistModel? = playlists.find { it.id == id }
+        return foundPlaylist
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {

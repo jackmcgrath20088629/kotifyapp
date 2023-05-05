@@ -7,6 +7,7 @@ interface PlaylistStore {
     fun create(playlist: PlaylistModel)
     fun update(playlist: PlaylistModel)
     fun delete(playlist: PlaylistModel)
+    fun findById(id:Long) : PlaylistModel?
 
 
 }

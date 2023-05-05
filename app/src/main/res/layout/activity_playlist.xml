@@ -79,6 +79,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/song" />
 
+        <NumberPicker
+            android:id="@+id/numbPick"
+            android:layout_width="373dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/hint_numbPick"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favArtist" />
+
         <Spinner
             android:id="@+id/genre"
             android:layout_width="0dp"
@@ -90,12 +104,13 @@
             android:spinnerMode="dialog"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favArtist" />
+            app:layout_constraintTop_toBottomOf="@id/numbPick" />
 
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="365dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/button_addPlaylist"
@@ -117,9 +132,9 @@
             android:id="@+id/playlistLocation"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/button_location"
             app:layout_constraintEnd_toEndOf="@+id/btnAdd"
             app:layout_constraintHorizontal_bias="1.0"
@@ -128,19 +143,28 @@
 
         <ImageView
             android:id="@+id/playlistImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="129dp"
+            android:layout_height="150dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/playlistLocation"
-            app:layout_constraintVertical_bias="0.173"
+            app:layout_constraintTop_toBottomOf="@+id/chooseImage"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_launcher_background" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="220dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="4dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.908"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playlistLocation" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

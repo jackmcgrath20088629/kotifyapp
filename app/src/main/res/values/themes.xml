@@ -24,5 +24,7 @@
     <style name="Theme.Kotifyapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Kotifyapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+
 
 </resources>

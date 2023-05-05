@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.NumberPicker
-import android.widget.Spinner
+import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +20,8 @@ import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import ie.setu.kotifyapp.helpers.showImagePicker
 import ie.setu.kotifyapp.models.Location
+import java.util.*
+
 class PlaylistActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlaylistBinding
@@ -51,6 +50,7 @@ class PlaylistActivity : AppCompatActivity() {
             binding.playlistTitle.setText(playlist.title)
             binding.song.setText(playlist.song)
             binding.favArtist.setText(playlist.favArtist)
+            //binding.genre.setText(playlist.genres)
             binding.btnAdd.setText(R.string.save_playlist)
             Picasso.get()
                 .load(playlist.image)
@@ -97,8 +97,8 @@ class PlaylistActivity : AppCompatActivity() {
 
         registerImagePickerCallback()
         registerMapCallback()
-        //numberPicker()
         playlistGenrePicker()
+        numberPickerSongs()
 
 
     }
@@ -168,12 +168,6 @@ class PlaylistActivity : AppCompatActivity() {
                 }
             }
     }
-   // private fun numberPicker() {
-   //     val numberPicker = binding.numbPick
-   //     numberPicker.minValue = 0
-   //     numberPicker.maxValue = 100
-   //     numberPicker.wrapSelectorWheel = true
-  //  }
 
     // Reference: https://developer.android.com/develop/ui/views/components/spinner
     private fun playlistGenrePicker() {
@@ -189,6 +183,11 @@ class PlaylistActivity : AppCompatActivity() {
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
+    }
+
+    private fun numberPickerSongs() {
+
+
     }
 
 

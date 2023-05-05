@@ -48,7 +48,7 @@ class PlaylistJSONStore(private val context: Context) : PlaylistStore {
             foundPlaylist.song = playlist.song
             foundPlaylist.favArtist = playlist.favArtist
             foundPlaylist.image = playlist.image
-            foundPlaylist.genre = playlist.genre
+            foundPlaylist.genres = playlist.genres
             foundPlaylist.lat = playlist.lat
             foundPlaylist.lng = playlist.lng
             foundPlaylist.zoom = playlist.zoom
